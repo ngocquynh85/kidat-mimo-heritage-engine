@@ -51,6 +51,17 @@ KIDAT_MIMO_MOCK=true
 
 Real MiMo API mode can be enabled later through `.env` after credentials and endpoint details are available.
 
+
+## Data source strategy
+
+KIDAT references an external public Kuthodaw image viewer repository as a candidate image source:
+
+- Upstream: <https://github.com/kit119/KIT-729>
+- Manifest: `data/upstream_kit729_manifest.jsonl`
+- Inventory: 734 `.webp` image files, about 804 MB upstream
+
+The full image corpus is not copied into this repository because the upstream repository does not declare a clear redistribution license. KIDAT stores source metadata and URLs only; real processing should use approved local copies or licensed source access.
+
 ## Repository contents
 
 - `docs/application_english.md` — application draft for Xiaomi MiMo Orbit.
@@ -61,6 +72,8 @@ Real MiMo API mode can be enabled later through `.env` after credentials and end
 - `sql/schema.sql` — initial MySQL schema for versioned records.
 - `src/` — PHP scaffold: MiMo client, pipeline, domain model, and token estimator.
 - `fixtures/` — synthetic demo fixture for validating the pipeline shape.
+- `data/` — upstream image-source manifest and licensing notes.
+- `scripts/inspect_manifest.php` — quick manifest inventory check.
 
 ## Design principles
 

@@ -40,6 +40,10 @@ Stores slab metadata, image paths, processing state, and version references. The
 
 Supervisor-managed PHP workers will consume queued slab jobs, call MiMo models, persist versioned records, and mark low-confidence regions for review or reprocessing.
 
+### Data source manifest
+
+`data/upstream_kit729_manifest.jsonl` lists candidate upstream image files from `kit119/KIT-729` without redistributing them. Workers can use the manifest to create ingestion jobs after licensing/permission checks.
+
 ## Data policy
 
 Raw OCR, restored text, translations, confidence, evidence, and notes are stored separately. Prior versions are not destructively overwritten. This allows later comparison when prompts, glossary rules, or reference sources improve.

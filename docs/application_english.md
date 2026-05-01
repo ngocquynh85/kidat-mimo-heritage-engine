@@ -64,6 +64,10 @@ A realistic full-corpus workflow includes:
 
 The initial phase will start with a small pilot subset to validate quality and cost. After validation, the same worker-based architecture can scale to complete-corpus processing and repeated quality-improvement passes. The expected token path ranges from a billion-token pilot to tens or hundreds of billions for a first complete pass, and potentially much higher for long-context research review, low-confidence reprocessing, and multilingual versioning. This makes KIDAT a suitable high-value workload for a large MiMo token allocation.
 
+## Data availability
+
+The repository includes a manifest referencing an external public Kuthodaw image viewer repository (`kit119/KIT-729`) with 734 `.webp` image files, totaling about 804 MB upstream. The images are not redistributed in this repository because the upstream license is not clearly specified. This manifest provides a realistic ingestion target while preserving attribution and allowing license verification before full processing.
+
 ## Technical implementation
 
 The prototype repository includes a worker-centric architecture designed for batch processing:
