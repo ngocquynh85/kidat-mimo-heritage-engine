@@ -92,6 +92,13 @@ The project aims to produce:
 - a public demo and research-ready dataset structure
 - an auditable AI pipeline for cultural heritage preservation
 
+The repository also includes a public interactive prototype demo:
+
+- Demo: https://demo.tutu.mobi/kidat/
+- GitHub: https://github.com/ngocquynh85/kidat-mimo-heritage-engine
+
+The demo is a visual proof-of-work showing the intended corpus scale, MiMo model-routing workflow, slab-level OCR/restoration/review interface, and token-demand rationale. It is explicitly marked as a prototype; full MiMo-powered corpus processing will run after API quota is granted.
+
 ## Current stage
 
 KIDAT is currently a prototype/pilot repository. The first milestone is to validate the data schema, MiMo API integration layer, prompt templates, token accounting, and a small demonstration workflow for one or several sample slab images. The architecture is designed so the pilot can expand into full-corpus processing once sufficient MiMo API resources are available.

@@ -2,7 +2,28 @@
 
 KIDAT is a prototype AI-assisted cultural heritage pipeline for digitizing, restoring, cross-referencing, and translating the 729 marble inscription slabs of the Kuthodaw Pagoda in Myanmar.
 
+<p align="center">
+  <a href="https://demo.tutu.mobi/kidat/">
+    <img src="docs/assets/kidat-demo-hero.png" alt="KIDAT interactive demo hero screen" width="100%">
+  </a>
+</p>
+
+- **Public interactive demo:** <https://demo.tutu.mobi/kidat/>
+- **GitHub repository:** <https://github.com/ngocquynh85/kidat-mimo-heritage-engine>
+
 > **Status:** pilot scaffold. This repository currently validates the data model, MiMo-oriented workflow, prompt templates, token accounting, and worker architecture before real full-corpus processing.
+
+## Interactive prototype
+
+The public prototype is a visual proof-of-work for the MiMo application. It demonstrates the intended corpus scale, model-routing workflow, slab-level OCR/restoration/review interface, and token-demand rationale.
+
+<p align="center">
+  <a href="https://demo.tutu.mobi/kidat/">
+    <img src="docs/assets/kidat-demo-slab-lab.png" alt="KIDAT slab OCR restoration review simulation" width="100%">
+  </a>
+</p>
+
+> The demo is illustrative. Full MiMo-powered corpus processing will run after API quota is granted. Demo inscription text and slab visualization are placeholders, not verified Kuthodaw transcriptions.
 
 ## Why this project exists
 
@@ -66,6 +87,7 @@ The full image corpus is not copied into this repository because the upstream re
 
 - `docs/application_english.md` — application draft for Xiaomi MiMo Orbit.
 - `docs/token_justification.md` — token-demand rationale and scaling plan.
+- `docs/assets/` — screenshots from the public interactive prototype.
 - `docs/architecture.md` — technical architecture and data policy.
 - `docs/development.md` — local development notes.
 - `prompts/` — prompt templates for OCR, restoration, translation, and review.
