@@ -1,0 +1,8 @@
+/vendor/
+.env
+.DS_Store
+.phpunit.cache/
+coverage/
+*.log
+
+.learnings/

@@ -1,0 +1,35 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+if (is_file(__DIR__ . '/../vendor/autoload.php')) {
+    require __DIR__ . '/../vendor/autoload.php';
+} else {
+    require __DIR__ . '/../src/Support/bootstrap.php';
+}
+
+use Kidat\AI\MiMoClient;
+use Kidat\Domain\SlabJob;
+use Kidat\Pipeline\HeritagePipeline;
+use Kidat\Support\TokenEstimator;
+
+$root = dirname(__DIR__);
+$command = $argv[1] ?? 'help';
+
+switch ($command) {
+    case 'demo':
+        $models = require $root . '/config/models.php';
+        $fixture = json_decode(file_get_contents($root . '/fixtures/sample_slab_001.json'), true);
+        $pipeline = new HeritagePipeline(MiMoClient::fromEnv(), $models);
+        echo json_encode($pipeline->run(SlabJob::fromArray($fixture)), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . PHP_EOL;
+        break;
+
+    case 'estimate':
+        echo json_encode((new TokenEstimator())->estimate(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . PHP_EOL;
+        break;
+
+    default:
+        fwrite(STDERR, "KIDAT commands:\n  demo      Run mock pipeline on sample fixture\n  estimate  Print planning token estimate\n");
+        exit($command === 'help' ? 0 : 1);
+}

@@ -1,0 +1,8 @@
+{
+  "slab_number": 1,
+  "title": "Pilot sample slab placeholder",
+  "status": "demo_fixture",
+  "note": "This is a synthetic fixture for pipeline validation. It is not a verified Kuthodaw transcription.",
+  "image_path": "fixtures/images/slab-001-placeholder.jpg",
+  "reference_context": "Canonical reference context will be attached during real processing."
+}
