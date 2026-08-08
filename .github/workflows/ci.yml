@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.2', '8.3', '8.4']
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: json
+          coverage: none
+          tools: composer:v2
+
+      - name: Validate Composer metadata
+        run: composer validate --no-check-publish --strict
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Lint PHP sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r -d '' file; do
+            php -l "$file"
+          done < <(find src bin scripts tests -type f -name '*.php' -print0)
+
+      - name: Run tests
+        run: vendor/bin/phpunit --configuration phpunit.xml.dist
+
+      - name: Run deterministic smoke commands
+        run: |
+          php bin/kidat demo > /tmp/kidat-demo.json
+          php bin/kidat estimate > /tmp/kidat-estimate.json
+          php scripts/inspect_manifest.php > /tmp/kidat-manifest.json
+          php -r '$d=json_decode(file_get_contents("/tmp/kidat-demo.json"), true); exit(($d["mocked"] ?? false) === true ? 0 : 1);'

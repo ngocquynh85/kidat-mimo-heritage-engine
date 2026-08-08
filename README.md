@@ -2,6 +2,9 @@
 
 KIDAT is a prototype AI-assisted cultural heritage pipeline for digitizing, restoring, cross-referencing, and translating the 729 marble inscription slabs of the Kuthodaw Pagoda in Myanmar.
 
+[![CI](https://github.com/ngocquynh85/kidat-mimo-heritage-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/ngocquynh85/kidat-mimo-heritage-engine/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 <p align="center">
   <a href="https://demo.tutu.mobi/kidat/">
     <img src="docs/assets/kidat-demo-hero.png" alt="KIDAT interactive demo hero screen" width="100%">
@@ -11,7 +14,22 @@ KIDAT is a prototype AI-assisted cultural heritage pipeline for digitizing, rest
 - **Public interactive demo:** <https://demo.tutu.mobi/kidat/>
 - **GitHub repository:** <https://github.com/ngocquynh85/kidat-mimo-heritage-engine>
 
-> **Status:** pilot scaffold. This repository currently validates the data model, MiMo-oriented workflow, prompt templates, token accounting, and worker architecture before real full-corpus processing.
+> **Status:** early-stage public OSS prototype. The repository currently validates the data model, MiMo-oriented workflow, prompt templates, token accounting, provenance policy, and worker architecture before real full-corpus processing.
+
+### What is working now
+
+- A reproducible PHP CLI pipeline with a deterministic mock mode.
+- Separate OCR, uncertainty, reconstruction, translation, and review stages.
+- A 734-record source manifest with provenance and licensing status fields.
+- A public interactive prototype showing the intended reviewer workflow.
+- PHPUnit coverage and GitHub Actions checks for the core scaffold.
+
+### What is not claimed
+
+The repository does not claim completed scholarly transcription, verified
+translations, or full-corpus AI processing. Demo outputs are synthetic and
+clearly labeled. Real source processing requires licensed data access and
+human review.
 
 ## Interactive prototype
 
@@ -62,6 +80,7 @@ composer install
 cp .env.example .env
 php bin/kidat demo
 php bin/kidat estimate
+vendor/bin/phpunit --configuration phpunit.xml.dist
 ```
 
 The default mode is mock mode, so the demo pipeline can run without API credentials:
@@ -96,6 +115,9 @@ The full image corpus is not copied into this repository because the upstream re
 - `fixtures/` — synthetic demo fixture for validating the pipeline shape.
 - `data/` — upstream image-source manifest and licensing notes.
 - `scripts/inspect_manifest.php` — quick manifest inventory check.
+- `tests/` — deterministic tests for token planning and the mock pipeline.
+- `.github/workflows/ci.yml` — PHP compatibility, lint, test, and smoke checks.
+- `CONTRIBUTING.md` / `SECURITY.md` — public maintainer and responsible-data guidelines.
 
 ## Design principles
 

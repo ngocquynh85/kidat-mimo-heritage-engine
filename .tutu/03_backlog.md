@@ -9,12 +9,11 @@
 - [x] Add minimal PHP code scaffold.
 
 ## Ready
-- [ ] Run composer install and verify CLI demo.
-- [ ] Initialize git repository.
-- [ ] Create GitHub repo under ngocquynh85 and push.
+- [ ] Review and push OSS credibility patch.
+- [ ] Add repository description, topics, and first CI run.
+- [ ] Submit Codex for Open Source application with truthful maintainer plan.
 
 ## Later
-- [ ] Add demo fixture for one real public-domain sample slab image.
-- [ ] Add dashboard mockup.
-- [ ] Add rendered architecture diagram image.
-- [ ] Add PHPUnit tests for TokenEstimator and mock pipeline.
+- [ ] Add a real licensed/public-domain sample slab only after provenance review.
+- [ ] Add an evaluation fixture and published baseline metrics.
+- [ ] Add a live provider adapter only after endpoint/schema compatibility is verified.
