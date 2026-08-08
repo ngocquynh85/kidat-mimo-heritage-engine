@@ -11,11 +11,12 @@ applying to Codex for Open Source.
 - Provider-neutral `ModelClient` core is public with MiMo retained as the first
   adapter and compatibility layer.
 - CI passes on PHP 8.2, 8.3, and 8.4; four concrete roadmap issues are open.
+- `v0.1.0` is published as an auditable prototype baseline.
 
 ## Next
-1. Publish the small `v0.1.0` prototype release.
-2. Submit the Codex for Open Source application.
-3. Build the licensed pilot fixture; this remains the strongest later evidence
+1. Submit the Codex for Open Source application after confirming the ChatGPT
+   account email and OpenAI Organization ID required by the form.
+2. Build the licensed pilot fixture; this remains the strongest later evidence
    upgrade and is intentionally not faked for the application.
 
 ## Truth boundary
