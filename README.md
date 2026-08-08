@@ -1,6 +1,6 @@
 # KIDAT — Kuthodaw AI Heritage Engine
 
-KIDAT is a prototype AI-assisted cultural heritage pipeline for digitizing, restoring, cross-referencing, and translating the 729 marble inscription slabs of the Kuthodaw Pagoda in Myanmar.
+KIDAT is a provider-neutral, AI-assisted cultural heritage pipeline for digitizing, restoring, cross-referencing, and translating the 729 marble inscription slabs of the Kuthodaw Pagoda in Myanmar. MiMo is the first model adapter, not a dependency of the core pipeline contract.
 
 [![CI](https://github.com/ngocquynh85/kidat-mimo-heritage-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/ngocquynh85/kidat-mimo-heritage-engine/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -19,6 +19,7 @@ KIDAT is a prototype AI-assisted cultural heritage pipeline for digitizing, rest
 ### What is working now
 
 - A reproducible PHP CLI pipeline with a deterministic mock mode.
+- A provider-neutral `ModelClient` contract with MiMo as the first adapter.
 - Separate OCR, uncertainty, reconstruction, translation, and review stages.
 - A 734-record source manifest with provenance and licensing status fields.
 - A public interactive prototype showing the intended reviewer workflow.
@@ -49,9 +50,10 @@ The Kuthodaw inscriptions are a historically significant Buddhist textual corpus
 
 KIDAT explores a careful AI workflow that keeps every intermediate step auditable: raw OCR, uncertain spans, restoration candidates, translations, confidence scores, references, and review notes are stored separately.
 
-## MiMo model strategy
+## Model strategy
 
-The project is designed around Xiaomi MiMo's multimodal and reasoning capabilities:
+The core pipeline depends on a small provider-neutral `ModelClient` contract.
+The first adapter uses Xiaomi MiMo's multimodal and reasoning capabilities:
 
 - **MiMo-V2.5-Omni** — visual OCR, inscription layout analysis, and degraded-character inspection.
 - **MiMo-V2.5-Pro** — restoration reasoning, canonical cross-reference, terminology consistency, and multilingual translation.
@@ -91,6 +93,9 @@ KIDAT_MIMO_MOCK=true
 
 Real MiMo API mode can be enabled later through `.env` after credentials and endpoint details are available.
 
+Additional provider adapters can implement `ModelClient` without changing the
+pipeline's evidence model, stage boundaries, or human-review policy.
+
 
 ## Data source strategy
 
@@ -112,6 +117,7 @@ The full image corpus is not copied into this repository because the upstream re
 - `prompts/` — prompt templates for OCR, restoration, translation, and review.
 - `sql/schema.sql` — initial MySQL schema for versioned records.
 - `src/` — PHP scaffold: MiMo client, pipeline, domain model, and token estimator.
+- `src/AI/ModelClient.php` — provider-neutral structured-generation contract.
 - `fixtures/` — synthetic demo fixture for validating the pipeline shape.
 - `data/` — upstream image-source manifest and licensing notes.
 - `scripts/inspect_manifest.php` — quick manifest inventory check.

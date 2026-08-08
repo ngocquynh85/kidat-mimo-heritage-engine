@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace Kidat\AI;
 
-final readonly class MiMoResponse
+/**
+ * @deprecated Use ModelResponse. Kept as a compatibility alias for the
+ * original MiMo-oriented prototype API.
+ */
+final readonly class MiMoResponse extends ModelResponse
 {
-    public function __construct(
-        public string $model,
-        public array $payload,
-        public int $inputTokens = 0,
-        public int $outputTokens = 0,
-        public bool $mocked = false,
-    ) {}
 }

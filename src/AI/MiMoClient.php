@@ -7,7 +7,7 @@ namespace Kidat\AI;
 use Kidat\Support\Env;
 use RuntimeException;
 
-final class MiMoClient
+final class MiMoClient implements ModelClient
 {
     public function __construct(
         private readonly string $baseUrl,
@@ -25,7 +25,7 @@ final class MiMoClient
         );
     }
 
-    public function generateJson(string $model, array $messages, array $schemaHint = []): MiMoResponse
+    public function generateJson(string $model, array $messages, array $schemaHint = []): ModelResponse
     {
         if ($this->mock || !$this->apiKey) {
             return $this->mockResponse($model, $messages, $schemaHint);
@@ -47,7 +47,7 @@ final class MiMoClient
             throw new RuntimeException('MiMo model response was not a JSON object.');
         }
 
-        return new MiMoResponse(
+        return new ModelResponse(
             model: $model,
             payload: $payload,
             inputTokens: (int) ($body['usage']['prompt_tokens'] ?? 0),
@@ -88,7 +88,7 @@ final class MiMoClient
         return $decoded;
     }
 
-    private function mockResponse(string $model, array $messages, array $schemaHint): MiMoResponse
+    private function mockResponse(string $model, array $messages, array $schemaHint): ModelResponse
     {
         $stage = $schemaHint['stage'] ?? 'unknown';
 
@@ -124,7 +124,7 @@ final class MiMoClient
             default => ['message' => 'Mock MiMo response', 'stage' => $stage],
         };
 
-        return new MiMoResponse(
+        return new ModelResponse(
             model: $model,
             payload: $payload,
             inputTokens: 1200,

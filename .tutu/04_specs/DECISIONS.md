@@ -11,3 +11,9 @@ Initial scaffold: PHP 8.2+, MySQL 8, Ubuntu worker model, Supervisor-compatible 
 
 ## D-004 — Auditability
 Raw OCR, restored text, translations, confidence scores, and reviewer notes must be versioned separately.
+
+## D-005 — Provider-neutral core
+`HeritagePipeline` depends on the small `ModelClient` contract, not a vendor
+client. MiMo remains the first adapter and default model configuration. New
+providers must preserve the same structured stages, evidence fields, token
+accounting, and human-review boundary.

@@ -7,9 +7,9 @@ KIDAT uses a worker-centric architecture. Each slab is processed as a versioned 
 ```mermaid
 flowchart TD
   A[Slab image / crop] --> B[Metadata registration]
-  B --> C[MiMo Omni visual OCR]
+  B --> C[Provider adapter / visual OCR]
   C --> D[Uncertainty detection]
-  D --> E[MiMo Pro restoration candidates]
+  D --> E[Reasoning model restoration candidates]
   E --> F[Canonical cross-reference]
   F --> G[Translation pipeline]
   G --> H[Glossary and hallucination review]
@@ -20,9 +20,16 @@ flowchart TD
 
 ## Components
 
+### ModelClient
+
+Provider-neutral contract for structured model generation. The heritage
+pipeline depends on this interface rather than a vendor SDK, so adapters can
+change without changing evidence storage or human-review boundaries.
+
 ### MiMoClient
 
-Handles MiMo-compatible API calls, mock mode, structured JSON responses, and future retry/rate-limit logic.
+The first `ModelClient` adapter. It handles MiMo-compatible API calls, mock
+mode, structured JSON responses, and future retry/rate-limit logic.
 
 ### TokenEstimator
 
